@@ -9,24 +9,28 @@ load("@rabbitmq-server//:rabbitmq_run.bzl", "rabbitmq_run", "rabbitmq_run_comman
 load("@rabbitmq-server//:rabbitmqctl.bzl", "rabbitmqctl")
 load("@bazel-erlang//:ct.bzl", "ct_suite")
 
-APP_ENV = """[
-	    {exchange, <<"metronome">>}
-	  ]"""
+# APP_ENV = """[
+# 	    {exchange, <<"rabbit_presence_exchange">>}
+# 	  ]"""
 
 DEPS = [
     "@rabbitmq-server//deps/rabbit_common:bazel_erlang_lib",
     "@rabbitmq-server//deps/amqp_client:bazel_erlang_lib",
 ]
 
+# BUILD_DEPS = [
+#     "//deps/rabbit_common:bazel_erlang_lib",
+# ]
+
 RUNTIME_DEPS = [
     "@rabbitmq-server//deps/rabbit:bazel_erlang_lib",
 ]
 
 rabbitmq_lib(
-    app_description = "Embedded Rabbit Metronome",
+    app_description = "Embedded Rabbit Presence Exchange",
     app_env = APP_ENV,
-    app_module = "rabbit_metronome",
-    app_name = "rabbitmq_metronome",
+    app_module = "rabbit_presence_exchange",
+    app_name = "rabbitmq_presence_exchange",
     runtime_deps = RUNTIME_DEPS,
     deps = DEPS,
 )
@@ -56,7 +60,7 @@ rabbitmqctl(
 )
 
 ct_suite(
-    name = "metronome_SUITE",
+    name = "rabbit_presence_exchange_SUITE",
     data = [
         "@rabbitmq_ct_helpers//tools/tls-certs:Makefile",
         "@rabbitmq_ct_helpers//tools/tls-certs:openssl.cnf.in",

@@ -1,12 +1,12 @@
-PROJECT = rabbitmq_metronome
-PROJECT_DESCRIPTION = Embedded Rabbit Metronome
-PROJECT_MOD = rabbit_metronome
+PROJECT = rabbitmq_presence_exchange
+PROJECT_DESCRIPTION = Embedded Rabbit Presence Exchange
+PROJECT_MOD = rabbit_presence_exchange_app
 
-define PROJECT_ENV
-[
-	    {exchange, <<"metronome">>}
-	  ]
-endef
+# define PROJECT_ENV
+# [
+# 	    {exchange, <<"rabbit_presence_exchange">>}
+# 	  ]
+# endef
 
 DEPS = rabbit_common rabbit amqp_client
 TEST_DEPS = rabbitmq_ct_helpers rabbitmq_ct_client_helpers
