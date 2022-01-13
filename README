@@ -12,7 +12,7 @@ git clone https://github.com/copiltembel/rabbitmq-presence-exchange.git
 cd presence-exchange
 make RABBITMQ_VERSION=v3.9.11
 make tests # optional
-make dist
+make dist RABBITMQ_VERSION=v3.9.11
 
 Copy the following directory to your RabbitMQ plugins/ directory:
 
@@ -21,6 +21,10 @@ plugins/rabbitmq_presence_exchange-v3.9.11
 Note that as of version 1.0.0 this plugin has been tested with RabbitMQ v3.9.x versions only.
 
 ## Overview
+
+There are new 2 types of presence exchanges: `x-presence` and `x-direct-presence`. The `x-presence` does not allow
+publishing to it (drops all messages), while `x-direct-presence` allows direct message exchange (i.e. identical to direct exchange, but also has the 
+`x-presence` capabilities).
 
 Messages are sent out from an `x-presence` exchange to queues attached
 with a binding key of the empty string when a new binding appears or
